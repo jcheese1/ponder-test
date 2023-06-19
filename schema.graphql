@@ -1,4 +1,24 @@
-type ExampleEntity @entity {
+type Recipe @entity {
   id: String!
-  name: String!
+  cost: Int!
+  smol: Smol!
+}
+
+type Smol @entity {
+  id: String!
+  background: Int!
+  body: Int!
+  clothes: Int!
+  mouth: Int!
+  glasses: Int!
+  hat: Int!
+  hair: Int!
+  skin: Int!
+  gender: Int!
+  headSize: Int!
+}
+
+type Cost @entity {
+  id: Int!
+  recipes: [Recipe!]! @derivedFrom(field: "cost")
 }

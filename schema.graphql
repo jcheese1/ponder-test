@@ -1,11 +1,29 @@
-type Recipe @entity {
-  id: String!
-  cost: Int!
-  smol: Smol!
+enum CostType {
+  Mythical
+  Legendary
+  Rare
+  Uncommon
 }
 
-type Smol @entity {
+enum RecipeGroupType {
+  Fez
+  Trapper
+  TopHat
+  Headphones
+  Headband
+  EnergyDome
+  Boater
+  HoodieBlue
+  HoodieGray
+  HoodieGreen
+  HoodiePurple
+  HoodieRed
+  PomPom
+}
+
+type Recipe @entity {
   id: String!
+  group: RecipeGroup!
   background: Int!
   body: Int!
   clothes: Int!
@@ -18,7 +36,15 @@ type Smol @entity {
   headSize: Int!
 }
 
+type RecipeGroup @entity {
+  id: Int!
+  type: RecipeGroupType!
+  cost: Cost!
+  recipes: [Recipe!]! @derivedFrom(field: "group")
+}
+
 type Cost @entity {
   id: Int!
-  recipes: [Recipe!]! @derivedFrom(field: "cost")
+  type: CostType!
+  recipeGroups: [RecipeGroup!]! @derivedFrom(field: "cost")
 }

@@ -1,4 +1,7 @@
 import { ponder } from "@/generated";
+import { client } from "./client";
+import rendererAbi from "./SmolsRenderer";
+import { hexToString } from "viem";
 
 const COST_TO_TYPE_MAPPING = {
   "2": "Uncommon",
@@ -23,10 +26,36 @@ const HAT_ID_TO_NAME_MAPPING = {
   10000047: "PomPom",
 } as const;
 
+const getSmolImage = async (smol: {
+  background: number;
+  body: number;
+  clothes: number;
+  mouth: number;
+  glasses: number;
+  hat: number;
+  hair: number;
+  skin: number;
+  gender: number;
+  headSize: number;
+}) => {
+  const imageHex = await client.readContract({
+    address: "0x5278fCABDA2325E1F522107C80c9A592D36b1F8E",
+    abi: rendererAbi,
+    functionName: "generateSVG",
+    args: [Object.values(smol)],
+  });
+
+  const buffer = Buffer.from(hexToString(imageHex as `0x${string}`));
+
+  return `data:image/svg+xml;base64,${buffer.toString("base64")}`;
+};
+
 ponder.on("Transmolgrifier:SmolRecipeAdded", async ({ event, context }) => {
   const { Recipe, Cost, RecipeGroup } = context.entities;
 
   const smol = event.params.smolData.smol;
+
+  const imageSvg = await getSmolImage(smol);
 
   let costEntity = await Cost.upsert({
     id: event.params.smolData.smolInputAmount,
@@ -55,7 +84,7 @@ ponder.on("Transmolgrifier:SmolRecipeAdded", async ({ event, context }) => {
     id: event.params.smolRecipeId.toString(),
     data: {
       group: recipeGroup.id.toString(),
-      ...smol,
+      image: imageSvg,
     },
   });
 });

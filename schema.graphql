@@ -24,16 +24,7 @@ enum RecipeGroupType {
 type Recipe @entity {
   id: String!
   group: RecipeGroup!
-  background: Int!
-  body: Int!
-  clothes: Int!
-  mouth: Int!
-  glasses: Int!
-  hat: Int!
-  hair: Int!
-  skin: Int!
-  gender: Int!
-  headSize: Int!
+  image: String!
 }
 
 type RecipeGroup @entity {

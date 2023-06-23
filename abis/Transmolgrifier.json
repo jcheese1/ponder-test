@@ -464,16 +464,27 @@
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "_smolRecipeId", "type": "uint256" },
       {
-        "internalType": "uint256",
-        "name": "_smolIdToTransmogrify",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_smolIdsToBurn",
-        "type": "uint256[]"
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "smolRecipeId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "smolIdToTransmolgrify",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "smolIdsToBurn",
+            "type": "uint256[]"
+          }
+        ],
+        "internalType": "struct Transmolgrifier.TransmolgrifyRequest[]",
+        "name": "_transmolgrifyRequests",
+        "type": "tuple[]"
       }
     ],
     "name": "transmolgrify",

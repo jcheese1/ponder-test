@@ -1,30 +1,29 @@
-import { ponder } from "@/generated";
+import { ponder, RecipeGroup } from "@/generated";
 import { client } from "./client";
 import rendererAbi from "./SmolsRenderer";
 import { hexToString } from "viem";
 
 const COST_TO_TYPE_MAPPING = {
-  "2": "Uncommon",
-  "3": "Rare",
-  "5": "Legendary",
-  "10": "Mythical",
+  "3": "Hype",
+  "2": "Vibes",
 } as const;
+
+const VR_TYPE = 10000028;
 
 const HAT_ID_TO_NAME_MAPPING = {
   10000039: "Fez",
-  10000049: "Trapper",
-  10000048: "TopHat",
-  10000041: "Headphones",
-  10000040: "Headband",
+  10000048: "Trapper",
+  10000040: "Headphones",
   10000038: "EnergyDome",
   10000037: "Boater",
-  10000042: "HoodieBlue",
-  10000043: "HoodieGray",
-  10000044: "HoodieGreen",
-  10000045: "HoodiePurple",
-  10000046: "HoodieRed",
-  10000047: "PomPom",
-} as const;
+  10000041: "HoodieBlue",
+  10000042: "HoodieGray",
+  10000043: "HoodieGreen",
+  10000044: "HoodiePurple",
+  10000045: "HoodieRed",
+  10000047: "TopHat",
+  [VR_TYPE]: "VR",
+} as Record<number, RecipeGroup["type"]>;
 
 const getSmolImage = async (smol: {
   background: number;
@@ -69,22 +68,31 @@ ponder.on("Transmolgrifier:SmolRecipeAdded", async ({ event, context }) => {
     update: {},
   });
 
-  const recipeGroup = await RecipeGroup.upsert({
-    id: smol.hat,
-    create: {
-      type: HAT_ID_TO_NAME_MAPPING[
-        smol.hat as keyof typeof HAT_ID_TO_NAME_MAPPING
-      ],
-      cost: costEntity.id.toString(),
-    },
-    update: {},
-  });
+  const targetTrait = smol.glasses === VR_TYPE ? smol.glasses : smol.hat;
 
-  await Recipe.create({
-    id: event.params.smolRecipeId.toString(),
-    data: {
-      group: recipeGroup.id.toString(),
-      image: imageSvg,
-    },
-  });
+  try {
+    const recipeGroup = await RecipeGroup.upsert({
+      id: targetTrait,
+      create: {
+        type: HAT_ID_TO_NAME_MAPPING[
+          targetTrait as keyof typeof HAT_ID_TO_NAME_MAPPING
+        ],
+        cost: costEntity.id.toString(),
+      },
+      update: {},
+    });
+
+    await Recipe.create({
+      id: event.params.smolRecipeId.toString(),
+      data: {
+        group: recipeGroup.id.toString(),
+        image: imageSvg,
+      },
+    });
+  } catch (e) {
+    console.log("Error creating recipe", {
+      smol,
+      targetTrait,
+    });
+  }
 });

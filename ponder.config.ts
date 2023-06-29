@@ -13,8 +13,8 @@ export const config: PonderConfig = {
       name: "Transmolgrifier",
       network: "arbitrum-goerli",
       abi: "./abis/Transmolgrifier.json",
-      address: "0xA747694D45b28b62F96183e0e9cA3aE69CC59aD8",
-      startBlock: 27586658,
+      address: "0xbd12D635E0a17ef2cBf9af2E4683BAF9d20e4157",
+      startBlock: 28728091,
     },
   ],
 };

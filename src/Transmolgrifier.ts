@@ -16,11 +16,11 @@ const HAT_ID_TO_NAME_MAPPING = {
   10000040: "Headphones",
   10000038: "EnergyDome",
   10000037: "Boater",
-  10000041: "HoodieBlue",
-  10000042: "HoodieGray",
-  10000043: "HoodieGreen",
-  10000044: "HoodiePurple",
-  10000045: "HoodieRed",
+  10000041: "BlueHoodie",
+  10000042: "GrayHoodie",
+  10000043: "GreenHoodie",
+  10000044: "PurpleHoodie",
+  10000045: "RedHoodie",
   10000047: "TopHat",
   [VR_TYPE]: "VR",
 } as Record<number, RecipeGroup["type"]>;
@@ -93,6 +93,8 @@ ponder.on("Transmolgrifier:SmolRecipeAdded", async ({ event, context }) => {
     console.log("Error creating recipe", {
       smol,
       targetTrait,
+      e,
+      recipeID: event.params.smolRecipeId.toString(),
     });
   }
 });

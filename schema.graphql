@@ -10,11 +10,11 @@ enum RecipeGroupType {
   Headphones
   EnergyDome
   Boater
-  HoodieBlue
-  HoodieGray
-  HoodieGreen
-  HoodiePurple
-  HoodieRed
+  BlueHoodie
+  GrayHoodie
+  GreenHoodie
+  PurpleHoodie
+  RedHoodie
   VR
 }
 

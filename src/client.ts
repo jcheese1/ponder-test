@@ -1,7 +1,7 @@
 import { createPublicClient, http } from "viem";
-import { arbitrumGoerli } from "viem/chains";
+import { arbitrum } from "viem/chains";
 
 export const client = createPublicClient({
-  chain: arbitrumGoerli,
-  transport: http(process.env.PONDER_RPC_URL_421613),
+  chain: arbitrum,
+  transport: http(process.env.PONDER_RPC_URL_42161),
 });

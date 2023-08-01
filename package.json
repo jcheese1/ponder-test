@@ -1,12 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "dev": "ponder dev",
+    "dev-goerli": "ponder dev --config-file ponder.goerli.config.ts",
+    "dev-mainnet": "ponder dev --config-file ponder.mainnet.config.ts",
     "start": "ponder start",
-    "codegen": "ponder codegen"
+    "codegen": "ponder codegen --config-file ponder.goerli.config.ts"
   },
   "dependencies": {
-    "@ponder/core": "^0.0.61",
+    "@ponder/core": "^0.0.78",
     "viem": "^0.1.6"
   },
   "devDependencies": {

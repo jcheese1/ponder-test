@@ -189,7 +189,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "smolIdToTransmogrify",
+        "name": "smolIdToTransmolgrify",
         "type": "uint256"
       },
       {
@@ -205,7 +205,7 @@
         "type": "uint256[]"
       }
     ],
-    "name": "SmolTransmogrified",
+    "name": "SmolTransmolgrified",
     "type": "event"
   },
   {
@@ -419,9 +419,9 @@
   },
   {
     "inputs": [
-      { "internalType": "bool", "name": "_transmogActive", "type": "bool" }
+      { "internalType": "bool", "name": "_transmolgActive", "type": "bool" }
     ],
-    "name": "setTransmogActive",
+    "name": "setTransmolgActive",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -1,6 +1,6 @@
-import type { PonderConfig } from "@ponder/core";
+import type { Config } from "@ponder/core";
 
-export const config: PonderConfig = {
+export const config: Config = {
   networks: [
     {
       name: "arbitrum-goerli",
@@ -13,8 +13,8 @@ export const config: PonderConfig = {
       name: "Transmolgrifier",
       network: "arbitrum-goerli",
       abi: "./abis/Transmolgrifier.json",
-      address: "0xbd12D635E0a17ef2cBf9af2E4683BAF9d20e4157",
-      startBlock: 28728091,
+      address: "0x3E1EAe7AE8c7ace33179A4DD55f83764C54aDDF8",
+      startBlock: 32438911,
     },
   ],
 };

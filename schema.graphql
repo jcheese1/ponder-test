@@ -4,18 +4,29 @@ enum CostType {
 }
 
 enum RecipeGroupType {
-  Fez
-  Trapper
-  TopHat
-  Headphones
-  EnergyDome
-  Boater
-  BlueHoodie
-  GrayHoodie
-  GreenHoodie
-  PurpleHoodie
-  RedHoodie
-  VR
+  AlligatorCostume
+  BearCostume
+  BullCostume
+  CowCostume
+  DinosaurCostume
+  DuckCostume
+  FoxCostume
+  FrogCostume
+  GrayCatCostume
+  LionCostume
+  MammothCostume
+  MouseCostume
+  OctopusCostume
+  OrangeCatCostume
+  PandaCostume
+  PenguinCostume
+  PigCostume
+  RabbitCostume
+  RaccoonCostume
+  RhinoCostume
+  SkunkCostume
+  TurtleCostume
+  WolfCostume
 }
 
 type Recipe @entity {
